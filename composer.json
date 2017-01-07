@@ -1,0 +1,32 @@
+{
+  "name" : "MBL/CSVRWBundle",
+  "description" : "CSV Read Write",
+  "type" : "symfony-bundle",
+  "authors" : [{
+    "name" : "Mohamed Blal",
+    "email" : "mohammed.blal@gmail.com",
+    "role" : "Lead Developer"
+  }],
+  "keywords" : [
+    "CSV Bundle"
+  ],
+  "license" : [
+    "MIT"
+  ],
+  "require" : {
+    "php": ">=5.3"
+  },
+  "autoload" : {
+    "psr-0" : {
+      "MBL\\CSVRWBundle" : ""
+    }
+  },
+  "target-dir" : "MBL/CSVRWBundle",
+  "repositories" : [{
+  }],
+  "extra" : {
+    "branch-alias" : {
+      "dev-master" : "1.0"
+    }
+  }
+}
