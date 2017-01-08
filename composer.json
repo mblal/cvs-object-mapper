@@ -1,5 +1,5 @@
 {
-  "name" : "MBL/CSVRWBundle",
+  "name" : "mbl/csvrwbundle",
   "description" : "CSV Read Write",
   "type" : "symfony-bundle",
   "authors" : [{
