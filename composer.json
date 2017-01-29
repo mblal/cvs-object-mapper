@@ -21,7 +21,7 @@
       "MBL\\CSVRWBundle" : ""
     }
   },
-  "target-dir" : "MBL/CSVRWBundle",
+  "target-dir" : "",
   "repositories" : [{
   }],
   "extra" : {
