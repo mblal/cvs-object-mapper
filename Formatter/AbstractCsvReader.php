@@ -15,7 +15,7 @@ abstract class AbstractCsvReader implements FormatterInterface
 
     protected static $mainInstances = array();
 
-    protected $annotationDefinition = 'MBL\CSVRWBundle\Annotation\\Depndency';
+    protected $annotationDefinition = 'MBL\CSVRWBundle\Annotation\\Dependency';
 
     protected $delimiter = '.';
 

@@ -9,7 +9,7 @@ use Doctrine\Common\Annotations\Annotation;
  * @Annotation
  * @Target({"PROPERTY"})
  */
-final class Depndency extends Annotation
+final class Dependency extends Annotation
 {
 
     public $class;
