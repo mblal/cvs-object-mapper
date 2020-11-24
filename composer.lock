@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "ee1324d4a4f5ad06fb243c1842fec3a9",
+    "content-hash": "df03642c40f2c0ee83d5dadd5178c458",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -552,6 +552,48 @@
             "time": "2020-09-29T09:10:42+00:00"
         },
         {
+            "name": "phpstan/phpstan",
+            "version": "0.12.57",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpstan/phpstan.git",
+                "reference": "f9909d1d0c44b4cbaf72babcf80e8f14d6fdd55b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/f9909d1d0c44b4cbaf72babcf80e8f14d6fdd55b",
+                "reference": "f9909d1d0c44b4cbaf72babcf80e8f14d6fdd55b",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1|^8.0"
+            },
+            "conflict": {
+                "phpstan/phpstan-shim": "*"
+            },
+            "bin": [
+                "phpstan",
+                "phpstan.phar"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.12-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "bootstrap.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "PHPStan - PHP Static Analysis Tool",
+            "time": "2020-11-21T12:53:28+00:00"
+        },
+        {
             "name": "phpunit/php-code-coverage",
             "version": "7.0.10",
             "source": {
@@ -810,12 +852,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "00cb4e37e7d46ce73c4bb9703e85a0bd0a3550d4"
+                "reference": "14eb51b23659ae5ac6bf1822eb28af2d4dbbbf8d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/00cb4e37e7d46ce73c4bb9703e85a0bd0a3550d4",
-                "reference": "00cb4e37e7d46ce73c4bb9703e85a0bd0a3550d4",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/14eb51b23659ae5ac6bf1822eb28af2d4dbbbf8d",
+                "reference": "14eb51b23659ae5ac6bf1822eb28af2d4dbbbf8d",
                 "shasum": ""
             },
             "require": {
@@ -885,7 +927,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2020-11-17T14:13:12+00:00"
+            "time": "2020-11-21T07:37:45+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
@@ -1663,7 +1705,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=5.3"
+        "php": ">=7.1"
     },
     "platform-dev": []
 }

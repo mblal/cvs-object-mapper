@@ -1,15 +1,13 @@
 {
   "name" : "mbl/csvrwbundle",
   "description" : "CSV Read Write",
-  "type" : "symfony-bundle",
+  "type" : "php-component",
   "authors" : [{
     "name" : "Mohamed Blal",
     "email" : "mohammed.blal@gmail.com",
     "role" : "Lead Developer"
   }],
-  "keywords" : [
-    "CSV Bundle"
-  ],
+  "keywords" : [],
   "license" : [
     "MIT"
   ],
@@ -19,7 +17,7 @@
   },
   "autoload" : {
     "psr-4" : {
-      "MBL\\CSVRWBundle\\" : ""
+      "FOM\\" : "FOM"
     }
   },
   "minimum-stability": "dev",
@@ -29,6 +27,7 @@
     }
   },
   "require-dev": {
-    "phpunit/phpunit": "8.5.x-dev"
+    "phpunit/phpunit": "8.5.x-dev",
+    "phpstan/phpstan": "0.12.57"
   }
 }
