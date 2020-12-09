@@ -43,18 +43,18 @@ class CsvReaderTest extends CsvReaderTestCase
         $modelEntrypoint = $this->getModelEntrypoint();
         $result = $this->cvsFormatterCaseOne->getObjectModel($file, $modelEntrypoint);
 
-
             $this->assertInstanceOf('FOM\Tests\Unit\Entity\Employee', $result[$index]);
-            $this->assertInstanceOf('FOM\Tests\Unit\Entity\School', $result[$index]->school);
-            $this->assertInstanceOf('FOM\Tests\Unit\Entity\Address', $result[$index]->school->address);
+            $this->assertInstanceOf('FOM\Tests\Unit\Entity\School', $result[$index]->getSchool());
+            $this->assertInstanceOf('FOM\Tests\Unit\Entity\Address', $result[$index]->getSchool()->getAddress());
 
             $this->assertEquals($employee->getFirstname(), Reflector::getValue($result[$index], 'firstname'));
-            $this->assertEquals($employee->getLastname(), $result[$index]->lastname);
-            $this->assertEquals($employee->getAge(), $result[$index]->age);
-            $this->assertEquals($employee->getDegree(), $result[$index]->degree);
-            $this->assertEquals($employee->getJob(), $result[$index]->job);
-            $this->assertEquals($employee->school->getName(), $result[$index]->school->name);
-            $this->assertEquals($employee->school->address->zipCode, $result[$index]->school->address->zipCode);
+            $this->assertEquals($employee->getLastname(), Reflector::getValue($result[$index], 'lastname'));
+            $this->assertEquals($employee->getAge(), Reflector::getValue($result[$index], 'age'));
+            $this->assertEquals($employee->getDegree(), Reflector::getValue($result[$index], 'degree'));
+            $this->assertEquals($employee->getJob(), Reflector::getValue($result[$index], 'job'));
+
+            $this->assertEquals($employee->getSchool()->getName(), Reflector::getValue($result[$index]->getSchool(), 'name'));
+            $this->assertEquals($employee->getSchool()->getAddress()->getZipCode(), $result[$index]->getSchool()->getAddress()->getZipCode());
     }
 
     public function getTargetModelFixture(){
@@ -64,9 +64,9 @@ class CsvReaderTest extends CsvReaderTestCase
 
         Reflector::setValue($address1, 'zipCode', 11000);
 
-        $school1->name = 'IGA';
-        $school1->category = ' Software engineering';
-        $school1->address = $address1;
+        Reflector::setValue($school1, 'name', 'IGA');
+        Reflector::setValue($school1, 'category', 'Software engineering');
+        Reflector::setValue($school1, 'address', $address1);
 
         Reflector::setValue($employee1, 'firstname', 'mohamed');
         Reflector::setValue($employee1,'lastname','blal');
@@ -81,9 +81,9 @@ class CsvReaderTest extends CsvReaderTestCase
 
         Reflector::setValue($address2, 'zipCode', 12000);
 
-        $school2->name = 'INPT';
-        $school2->category = 'Telecom & Software engineering';
-        $school2->address = $address2;
+        Reflector::setValue($school2, 'name', 'INPT');
+        Reflector::setValue($school2, 'category', 'Telecom & Software engineering');
+        Reflector::setValue($school2, 'address', $address2);
 
         Reflector::setValue($employee2, 'firstname', 'Taha');
         Reflector::setValue($employee2,'lastname','Id Boubker');

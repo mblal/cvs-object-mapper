@@ -10,18 +10,18 @@ class School
     /**
      * @var string
      */
-    public $name;
+    private $name;
 
     /**
      * @var string
      */
-    public $category;
+    private $category;
 
     /**
      * @var Address
      * @Dependency(class="FOM\Tests\Unit\Entity\Address")
      */
-    public $address;
+    private $address;
 
     /**
      * @return string
@@ -54,4 +54,21 @@ class School
     {
         $this->category = $category;
     }
+
+    /**
+     * @return \FOM\Tests\Unit\Entity\Address
+     */
+    public function getAddress(): \FOM\Tests\Unit\Entity\Address
+    {
+        return $this->address;
+    }
+
+    /**
+     * @param \FOM\Tests\Unit\Entity\Address $address
+     */
+    public function setAddress(\FOM\Tests\Unit\Entity\Address $address): void
+    {
+        $this->address = $address;
+    }
+
 }

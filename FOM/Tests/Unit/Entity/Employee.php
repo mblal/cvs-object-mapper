@@ -11,29 +11,29 @@ class Employee
     /**
      * @var string
      */
-    public $firstname;
+    private $firstname;
     /**
      * @var string
      */
-    public $lastname;
+    private $lastname;
     /**
      * @var int
      */
-    public $age;
+    private $age;
     /**
      * @var string
      */
-    public $degree;
+    private $degree;
     /**
      * @var string
      */
-    public $job;
+    private $job;
 
     /**
      * @var School
      * @Dependency (class="FOM\Tests\Unit\Entity\School")
      */
-    public $school;
+    private $school;
     /**
      * @return string
      */
@@ -113,4 +113,21 @@ class Employee
     {
         $this->job = $job;
     }
+
+    /**
+     * @return \FOM\Tests\Unit\Entity\School
+     */
+    public function getSchool(): \FOM\Tests\Unit\Entity\School
+    {
+        return $this->school;
+    }
+
+    /**
+     * @param \FOM\Tests\Unit\Entity\School $school
+     */
+    public function setSchool(\FOM\Tests\Unit\Entity\School $school): void
+    {
+        $this->school = $school;
+    }
+
 }

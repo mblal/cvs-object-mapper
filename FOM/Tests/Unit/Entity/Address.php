@@ -9,5 +9,22 @@ class Address
     /**
      * @var string
      */
-    public $zipCode;
+    private $zipCode;
+
+    /**
+     * @return string
+     */
+    public function getZipCode(): string
+    {
+        return $this->zipCode;
+    }
+
+    /**
+     * @param string $zipCode
+     */
+    public function setZipCode(string $zipCode): void
+    {
+        $this->zipCode = $zipCode;
+    }
+
 }

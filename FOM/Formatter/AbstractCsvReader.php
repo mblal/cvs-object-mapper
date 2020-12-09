@@ -24,6 +24,11 @@ abstract class AbstractCsvReader implements FormatterInterface
     protected $totalLines = 0;
 
     /**
+     * Get CSV Header
+     * @return array
+     */
+    abstract public function getHeader();
+    /**
      * Transform one line at the time
      *
      * @param mixed $content
@@ -75,7 +80,6 @@ abstract class AbstractCsvReader implements FormatterInterface
      */
     public function getObjectModel($content, $targetModel)
     {
-        $attributes = array();
         $annotationReader = new AnnotationReader();
 
         if (!$content instanceof \Traversable) {
@@ -99,6 +103,7 @@ abstract class AbstractCsvReader implements FormatterInterface
                     for ($i = 0; $i < count($attributes) - 1; $i++) {
 
                         $reflectionProp = new \ReflectionProperty($entityOfWork, $attributes[$i]);
+                        $reflectionProp->setAccessible(true);
                         $relation = $annotationReader->getPropertyAnnotation($reflectionProp, $this->annotationDefinition);
                         $object = new $relation->class;
                         $lst[$key][$attributes[$i]] = $object;
@@ -109,8 +114,9 @@ abstract class AbstractCsvReader implements FormatterInterface
 
                     continue;
                 }
-
-                static::$mainInstances[$key]->{$attribute} = $value;
+                $reflectionProperty = new \ReflectionProperty(get_class(static::$mainInstances[$key]), $attribute);
+                $reflectionProperty->setAccessible(true);
+                $reflectionProperty->setValue(static::$mainInstances[$key], $value);
             }
         }
         $lst = $this->rawHydrator($lst);
@@ -127,9 +133,13 @@ abstract class AbstractCsvReader implements FormatterInterface
         foreach ($list as $prentKey => $parent) {
             foreach ($parent as $childKey => $child) {
                 if (is_object($child)) {
-                    $vars = get_object_vars($child);
+                    $reflect = new \ReflectionClass($child);
+                    $vars = $reflect->getProperties();
+                    $vars = $this->flatProperties($vars);
                     foreach ($vars as $k => $v) {
-                        $child->$k = $parent[$k];
+                        $reflectionProperty = new \ReflectionProperty(get_class($child), $k);
+                        $reflectionProperty->setAccessible(true);
+                        $reflectionProperty->setValue($child, $parent[$k]);
                     }
                 }
             }
@@ -145,7 +155,10 @@ abstract class AbstractCsvReader implements FormatterInterface
     {
         foreach ($list as $prentKey => $parent) {
             foreach ($parent as $childKey => $child) {
-                static::$mainInstances[$prentKey]->{$childKey} = $child;
+
+                $reflectionProperty = new \ReflectionProperty(get_class(static::$mainInstances[$prentKey]), $childKey);
+                $reflectionProperty->setAccessible(true);
+                $reflectionProperty->setValue(static::$mainInstances[$prentKey], $child);
                 break;
             }
         }
@@ -174,10 +187,12 @@ abstract class AbstractCsvReader implements FormatterInterface
         return $this->totalLines;
     }
 
-    /**
-     * Get CSV Header
-     * @return array
-     */
-    abstract public function getHeader();
-
+    protected function flatProperties(array $properties): array
+    {
+        $output = array();
+        foreach ($properties as $property){
+            $output[] = $property->getName();
+        }
+        return array_flip($output);
+    }
 }
